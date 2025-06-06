@@ -1,23 +1,19 @@
 import gradio as gr
-from predict import Predictor
+from PIL import Image
 
-predictor = Predictor()
-predictor.setup()
+def generate_output(face_image, prompt):
+    # dummy output - replace with your model inference code
+    return face_image
 
-def swap_face(prompt, face_image):
-    output_path = predictor.predict(prompt=prompt, face_image=face_image)
-    return str(output_path)
-
-iface = gr.Interface(
-    fn=swap_face,
+demo = gr.Interface(
+    fn=generate_output,
     inputs=[
-        gr.Textbox(label="Prompt (e.g., Woman in red lingerie)"),
-        gr.Image(type="filepath", label="Upload Face Image")
+        gr.Image(type="pil", label="Upload Face Image"),
+        gr.Textbox(label="Describe Outfit (e.g. 'red satin lingerie')")
     ],
-    outputs=gr.Image(label="Result"),
-    title="IRA Face Swap AI",
-    description="Upload a face image and type a prompt. The AI will generate a dressed version."
+    outputs=gr.Image(label="Output Image"),
+    title="IRA Face + Lingerie Swap",
+    description="Upload a face image and describe the sexy lingerie outfit. Get a realistic result!"
 )
 
-if __name__ == "__main__":
-    iface.launch()
+demo.launch()
