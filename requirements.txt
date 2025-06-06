@@ -1,0 +1,8 @@
+cog==0.7.4
+gradio==4.32.1
+torch
+torchvision
+transformers
+diffusers
+numpy
+pillow
